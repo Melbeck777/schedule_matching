@@ -61,6 +61,10 @@ def login():
         send_data['id']   = user_data.id
     print("user_password = {}\npost_pass = {}".format(user_password, post_data['password']))
     print(send_data)
+    return redirect('/login/verify', send_data)
+
+@app.route('/login/verify', methods=['GET'])
+def login_verify(send_data):
     return jsonify(send_data)
 
 @app.route('/logout')
