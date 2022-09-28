@@ -5,7 +5,7 @@
                 <th><h2>Genre</h2></th>
             </thead>
             <tr>
-                <td><input v-model="genre.name" class="genre_name mx-6"/></td>
+                <td><input v-model="genre.name" class="genre_name"/></td>
                 <td><button class="del" v-on:click="del(index)">Delete</button></td>
             </tr>
             <tr><Category></Category></tr>
@@ -32,7 +32,8 @@
                 this.genres.push({name:''})
             },
             del: function(index){
-                console.log(index)
+                console.log(index);
+                console.log(this.genres);
                 this.genres.splice(index,1)
             },
         }
@@ -60,6 +61,7 @@
     }
     .category_name {
         padding: 0.5em 1em;
+        margin: 0 5em;
         font-weight:bold;
         font-size:20px;
         border: solid 3px;

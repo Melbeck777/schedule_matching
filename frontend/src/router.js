@@ -4,7 +4,8 @@ import TopPage from './components/TopPage'
 import SignIn from './components/SignIn'
 import LogIn from './components/LogIn'
 import CreateEvent from './components/CreateEvent'
-import DateInput from './components/DateInput'
+import UserPage from './components/UserPage'
+
 // import HelloWorld from './components/HelloWorld'
 
 Vue.use(Router)
@@ -28,14 +29,14 @@ export default new Router({
             component:LogIn
         },
         {
+            path:'/user',
+            name:'user',
+            component:UserPage
+        },
+        {
             path:'/create_event',
             name:'create_event',
             component:CreateEvent
         },
-        {
-            path:'/date_input',
-            name:'date_input',
-            component:DateInput
-        }
     ]
 })
