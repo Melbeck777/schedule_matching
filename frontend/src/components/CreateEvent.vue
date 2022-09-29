@@ -42,7 +42,8 @@
                     </v-row>
                 </v-col>
                 <v-col>
-                    <Genre></Genre>
+                    <Genre v-show="isDisplay"></Genre>
+                    <button v-on:click="click_show()" class="show">Show</button>
                 </v-col>
             </v-row>
         </form>
@@ -58,7 +59,8 @@
             default2:'2022-07-15',
             DatePickerFormat:'yyyy-MM-dd',
             genres:[{name:''}],
-            categories:[{name:''}]
+            categories:[{name:''}],
+            isDisplay:true
         }),
         components: {
             Datepicker,
@@ -67,6 +69,9 @@
         methods:{
             resize:function(){
                 this.fullheight = window.innerHeight+'px';
+            },
+            click_show:function(){
+                this.isDisplay = !this.isDisplay
             }
         },
         mounted(){
@@ -79,5 +84,11 @@
     .duration {
         padding:1em;
         margin:1em;
+    }
+    .show{
+        padding:1em;
+        margin:1em;
+        background-color:lightblue;
+        color:white;
     }
 </style>
