@@ -57,8 +57,6 @@
             default1:'2022-07-14',
             default2:'2022-07-15',
             DatePickerFormat:'yyyy-MM-dd',
-            width:'80px',
-            height:'80px',
             genres:[{name:''}],
             categories:[{name:''}]
         }),

@@ -5,10 +5,7 @@
         </v-btn>
         <v-btn class="red smb-4 sm-6" height="60px" width="60px" v-on:click="login">
             Login
-        </v-btn> 
-        <v-btn class="mb-4 sm-6" height="60px" width="60px" v-on:click="login">
-            Create 
-        </v-btn> 
+        </v-btn>
     </v-row>
 </template>
 

@@ -34,7 +34,7 @@
             del: function(index){
                 console.log(index);
                 console.log(this.genres);
-                this.genres.splice(index,1)
+                this.genres.splice(index,1);
             },
         }
     }
