@@ -3,47 +3,35 @@
         <h1 class="text-center">Create Event</h1>
         <form>
             <v-row class="text-left pt-5">
-                <v-col cols="12">
+                <h2 v-show="!isBaseDisplay">Base</h2>
+                <button class="show" v-on:click="isBaseDisplay=clickShow(isBaseDisplay)">Show</button>
+                <v-col cols="12" v-show="isBaseDisplay">
                     <h2 class="headline font-weight-bold mb-4">Name</h2>
                     <v-text-field id="form-event_name" v-model="name" outlined required></v-text-field>
                 </v-col>
-                <v-col cols="12">
+                <v-col cols="12" v-show="isBaseDisplay">
                     <h2 class="headline font-weight-bold mb-4">Location</h2>
                     <v-text-field id="form-location" v-model="location" outlined required></v-text-field>
                 </v-col>
-                <v-col cols="12">
+                <v-col cols="12" v-show="isBaseDisplay">
                     <h2 class="headline font-weight-bold mb-4">Number of times</h2>
                     <v-text-field id="form-num" v-model="num" outlined required></v-text-field>
                 </v-col>
-                <v-col cols="12" class="duration">
+            </v-row>
+            <v-row>
+                <v-col>
                     <h2>Duration</h2>
+                        <button class="show" v-on:click="isDurationDisplay=clickShow(isDurationDisplay)">Show</button>
                     <v-row>
-                        <table>
-                            <tr class="text-left">
-                                <td><h2>Start</h2></td>
-                                <td></td>
-                                <td><h2>End</h2></td>
-                            </tr>
-                            <tr>
-                                <td><datepicker
-                                    :value="this.default1"
-                                    :format="DatePickerFormat"
-                                    height="60px"
-                                    width="60px"
-                                    class="text-h4"
-                                    color="primary"></datepicker></td>
-                                    <td><h3 class="mb-7 mx-6">～</h3></td>
-                                    <td><datepicker 
-                                    :value="this.default2"
-                                    :format="DatePickerFormat"
-                                    class="text-h4"></datepicker></td>
-                            </tr>
-                        </table>
+                        <DateInput v-show="isDurationDisplay"></DateInput>
                     </v-row>
                 </v-col>
+            </v-row>
+            <v-row>
                 <v-col>
-                    <Genre v-show="isDisplay"></Genre>
-                    <button v-on:click="click_show()" class="show">Show</button>
+                    <h2 v-show="!isGenreDisplay">Genre</h2>
+                    <Genre v-show="isGenreDisplay"></Genre>
+                    <button v-on:click="isGenreDisplay=clickShow(isGenreDisplay)" class="show">Show</button>
                 </v-col>
             </v-row>
         </form>
@@ -51,8 +39,8 @@
 </template>
 
 <script>
-    import Datepicker from 'vuejs-datepicker'
     import Genre from './GenreInput.vue'
+    import DateInput from './DateInput.vue'
     export default {
         data:()=>({
             default1:'2022-07-14',
@@ -60,22 +48,20 @@
             DatePickerFormat:'yyyy-MM-dd',
             genres:[{name:''}],
             categories:[{name:''}],
-            isDisplay:true
+            isGenreDisplay:true,
+            isDurationDisplay:true,
+            isBaseDisplay:true
         }),
-        components: {
-            Datepicker,
+        components:{
             Genre,
+            DateInput
         },
         methods:{
-            resize:function(){
-                this.fullheight = window.innerHeight+'px';
+            clickShow: function(buttonName){
+                console.log(buttonName);
+                console.log(!buttonName);
+                return !buttonName;
             },
-            click_show:function(){
-                this.isDisplay = !this.isDisplay
-            }
-        },
-        mounted(){
-            window.addEventListener('resize',this.resize);
         }
     }
 </script>
