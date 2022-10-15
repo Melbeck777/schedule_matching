@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <h1 class="text-center">Create Event</h1>
-        <form>
+        <form v-on:click="to_genre">
             <v-row class="text-left pt-5">
                 <h2 v-show="!isBaseDisplay">Base</h2>
                 <button class="show" v-on:click="isBaseDisplay=clickShow(isBaseDisplay)">Show</button>
@@ -27,41 +27,45 @@
                     </v-row>
                 </v-col>
             </v-row>
-            <v-row>
-                <v-col>
-                    <h2 v-show="!isGenreDisplay">Genre</h2>
-                    <Genre v-show="isGenreDisplay"></Genre>
-                    <button v-on:click="isGenreDisplay=clickShow(isGenreDisplay)" class="show">Show</button>
-                </v-col>
-            </v-row>
+            <v-col cols="12" class="text-center">
+                <v-btn
+                color="green"
+                absolute
+                center
+                fab
+                middle
+                class="mt-4 mb-8"
+                type="submit">
+                <v-icon>mdi-cat</v-icon>
+            </v-btn>
+            </v-col>
         </form>
     </v-container>
 </template>
 
 <script>
-    import Genre from './GenreInput.vue'
     import DateInput from './DateInput.vue'
     export default {
         data:()=>({
             default1:'2022-07-14',
             default2:'2022-07-15',
             DatePickerFormat:'yyyy-MM-dd',
-            genres:[{name:''}],
-            categories:[{name:''}],
+            genres:[{name:'',
+            categories:[]}],
             isGenreDisplay:true,
             isDurationDisplay:true,
             isBaseDisplay:true
         }),
         components:{
-            Genre,
             DateInput
         },
         methods:{
             clickShow: function(buttonName){
-                console.log(buttonName);
-                console.log(!buttonName);
                 return !buttonName;
             },
+            to_genre(){
+                this.$router.push('/add_genre')
+            }
         }
     }
 </script>
